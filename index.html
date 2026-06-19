@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Barbero | Club & Studio - Gestión de Citas y Estilo Masculino</title>
+  <meta name="description" content="Gestiona y agenda tu cita en El Barbero Club & Studio. El mejor servicio de corte de cabello, arreglo de barba y tratamientos capilares.">
+  
+  <!-- PWA Support -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#D4AF37">
+  <link rel="apple-touch-icon" href="https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=192&h=192&fit=crop">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Leaflet Map CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ==========================================
+       HEADER & NAVIGATION
+       ========================================== -->
+  <header class="main-header">
+    <div class="container header-container">
+      <a href="#" class="logo">
+        <span class="logo-icon"><i class="fa-solid fa-scissors"></i></span>
+        <span class="logo-text">EL BARBERO</span>
+      </a>
+      
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+          <li><a href="#servicios" class="nav-link">Servicios</a></li>
+          <li><a href="#equipo" class="nav-link">Equipo</a></li>
+          <li><a href="#galeria" class="nav-link">Galería</a></li>
+          <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
+          <li><a href="#contacto" class="nav-link">Ubicación</a></li>
+        </ul>
+      </nav>
+      
+      <div class="header-actions">
+        <!-- Online/Offline connection status -->
+        <div id="connection-status-badge" class="connection-status-badge online" title="Estado de la conexión">
+          <span class="status-dot"></span> <span class="status-text">En Línea</span>
+        </div>
+        
+        <!-- Cloud Sync status indicator -->
+        <div id="cloud-sync-badge" class="cloud-sync-badge synced" title="Sincronización en la Nube">
+          <i class="fa-solid fa-cloud"></i> <span class="sync-text">Sincronizado</span>
+        </div>
+        
+        <button class="btn btn-outline btn-client-auth-trigger" id="btn-client-menu" title="Mi Cuenta de Cliente">
+          <i class="fa-regular fa-user"></i> <span class="btn-text">Mi Cuenta</span>
+        </button>
+        <button class="btn btn-primary btn-book-trigger">
+          <i class="fa-regular fa-calendar-check"></i> Agendar Cita
+        </button>
+        <button class="btn btn-outline btn-admin-trigger" title="Acceso de Personal">
+          <i class="fa-solid fa-user-tie"></i>
+        </button>
+        <button class="mobile-nav-toggle" aria-label="Abrir menú">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Navigation -->
+  <div class="mobile-nav-menu">
+    <div class="mobile-nav-header">
+      <span class="logo-text">EL BARBERO</span>
+      <button class="mobile-nav-close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <ul>
+      <li><a href="#inicio" class="mobile-link">Inicio</a></li>
+      <li><a href="#servicios" class="mobile-link">Servicios</a></li>
+      <li><a href="#equipo" class="mobile-link">Equipo</a></li>
+      <li><a href="#galeria" class="mobile-link">Galería</a></li>
+      <li><a href="#opiniones" class="mobile-link">Opiniones</a></li>
+      <li><a href="#contacto" class="mobile-link">Contacto</a></li>
+      <li><hr class="mobile-divider"></li>
+      <li><button class="btn btn-outline btn-client-auth-trigger w-100"><i class="fa-regular fa-user"></i> Mi Cuenta</button></li>
+      <li><button class="btn btn-primary btn-book-trigger w-100 mt-2">Agendar Cita</button></li>
+      <li><button class="btn btn-outline btn-admin-trigger w-100 mt-2"><i class="fa-solid fa-user-tie"></i> Acceso Personal</button></li>
+    </ul>
+  </div>
+
+  <main>
+    <!-- ==========================================
+         HERO SECTION (INICIO)
+         ========================================== -->
+    <section id="inicio" class="hero-section">
+      <div class="hero-bg-overlay"></div>
+      <div class="container hero-container">
+        <div class="hero-content">
+          <div class="badge-luxury">ESTILO & TRADICIÓN</div>
+          <h1>El Barbero <br><span class="text-gold">Club & Studio</span></h1>
+          <p>Ofrecemos una experiencia de corte y cuidado masculino de primer nivel. Cada uno de nuestros barberos cuenta con su propia gama de especialidades y precios para adaptarse a tu estilo. Agenda hoy con tu profesional preferido.</p>
+          <div class="hero-buttons">
+            <button class="btn btn-primary btn-lg btn-book-trigger">
+              Agendar mi cita <i class="fa-solid fa-chevron-right btn-icon-right"></i>
+            </button>
+            <a href="#servicios" class="btn btn-outline btn-lg">Ver Servicios</a>
+          </div>
+          <div class="hero-features">
+            <div class="feature-item">
+              <span class="feature-icon"><i class="fa-solid fa-medal"></i></span>
+              <span class="feature-text">Servicio Personalizado</span>
+            </div>
+            <div class="feature-item">
+              <span class="feature-icon"><i class="fa-solid fa-wifi"></i></span>
+              <span class="feature-text">Soporte Offline</span>
+            </div>
+            <div class="feature-item">
+              <span class="feature-icon"><i class="fa-solid fa-beer-mug-empty"></i></span>
+              <span class="feature-text">Bebida de Cortesía</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-media">
+          <div class="hero-frame-gold">
+            <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=800&auto=format&fit=crop" alt="Experiencia en barbería profesional" class="hero-img">
+            <div class="hero-floating-card">
+              <i class="fa-solid fa-star text-gold"></i>
+              <span class="rating-val">4.9</span>
+              <span class="rating-desc">1,200+ clientes felices</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SERVICES & PRICES
+         ========================================= -->
+    <section id="servicios" class="services-section section-padding">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="subtitle-gold">Nuestros Precios</span>
+          <h2>Servicios Recomendados</h2>
+          <p>Mira algunos de los servicios populares que nuestros barberos pueden realizar.</p>
+        </div>
+
+        <div class="services-grid" id="landing-services-showcase">
+          <!-- Rendered dynamically by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         BARBER TEAM
+         ========================================== -->
+    <section id="equipo" class="team-section section-padding">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="subtitle-gold">Maestros del Oficio</span>
+          <h2>Elige a tu Barbero</h2>
+          <p>Cada barbero gestiona su propio catálogo y tarifas. Conócelos y selecciona al indicado.</p>
+        </div>
+
+        <div class="team-grid" id="barbers-container">
+          <!-- Rendered dynamically by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         GALLERY OF WORK
+         ========================================== -->
+    <section id="galeria" class="gallery-section section-padding">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="subtitle-gold">El Arte del Estilo</span>
+          <h2>Galería de Trabajos</h2>
+          <p>Echa un vistazo a la calidad de los cortes y peinados realizados en nuestro estudio.</p>
+        </div>
+        
+        <div class="gallery-filter">
+          <button class="filter-btn active" data-filter="all">Todo</button>
+          <button class="filter-btn" data-filter="haircut">Cortes</button>
+          <button class="filter-btn" data-filter="beard">Barbas</button>
+          <button class="filter-btn" data-filter="style">Estilismo</button>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-item" data-category="haircut">
+            <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=600&auto=format&fit=crop" alt="Corte Degradado (Fade)">
+            <div class="gallery-overlay">
+              <h4>Degradado Clásico</h4>
+              <p>Fade limpio con acabado mate</p>
+            </div>
+          </div>
+          <div class="gallery-item" data-category="beard">
+            <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=600&auto=format&fit=crop" alt="Arreglo de Barba">
+            <div class="gallery-overlay">
+              <h4>Perfilado de Barba</h4>
+              <p>Alineación a navaja y aceites hidratantes</p>
+            </div>
+          </div>
+          <div class="gallery-item" data-category="haircut">
+            <img src="https://images.unsplash.com/photo-1599351431247-f5094087e882?q=80&w=600&auto=format&fit=crop" alt="Corte Moderno">
+            <div class="gallery-overlay">
+              <h4>Pompadour Moderno</h4>
+              <p>Volumen superior con fijación premium</p>
+            </div>
+          </div>
+          <div class="gallery-item" data-category="style">
+            <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=600&auto=format&fit=crop" alt="Peinado y Estilo">
+            <div class="gallery-overlay">
+              <h4>Peinado y Textura</h4>
+              <p>Estilizado con cera de arcilla natural</p>
+            </div>
+          </div>
+          <div class="gallery-item" data-category="haircut">
+            <img src="https://images.unsplash.com/photo-1605497746444-ac9da5848ba7?q=80&w=600&auto=format&fit=crop" alt="Corte de Pelo Corto">
+            <div class="gallery-overlay">
+              <h4>Buzz Cut Degradado</h4>
+              <p>Estilo minimalista y de bajo mantenimiento</p>
+            </div>
+          </div>
+          <div class="gallery-item" data-category="beard">
+            <img src="https://images.unsplash.com/photo-1517832606299-7ae9b720a186?q=80&w=600&auto=format&fit=crop" alt="Afeitado Tradicional">
+            <div class="gallery-overlay">
+              <h4>Afeitado Completo</h4>
+              <p>Afeitado con toalla caliente y navaja libre</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         OPINIONS & REVIEWS
+         ========================================== -->
+    <section id="opiniones" class="reviews-section section-padding">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="subtitle-gold">Testimonios</span>
+          <h2>Opiniones de Clientes</h2>
+          <p>La confianza y satisfacción de quienes nos visitan son nuestra mejor garantía.</p>
+        </div>
+
+        <div class="reviews-layout">
+          <!-- Reviews List -->
+          <div class="reviews-list-container">
+            <div class="rating-summary-card">
+              <div class="summary-left">
+                <span class="average-rating">4.9</span>
+                <div class="stars" id="avg-stars-container">
+                  <!-- Rendered by JS -->
+                </div>
+                <span class="total-reviews-count">Basado en 4 opiniones</span>
+              </div>
+              <div class="summary-right" id="stars-bars-container">
+                <!-- Rendered by JS -->
+              </div>
+            </div>
+            
+            <div class="reviews-feed" id="reviews-feed-container">
+              <!-- Rendered dynamically by JS -->
+            </div>
+          </div>
+
+          <!-- Add Review Form -->
+          <div class="review-form-card">
+            <h3>Comparte tu Experiencia</h3>
+            <p>Tu opinión nos ayuda a seguir brindándote el mejor servicio.</p>
+            <form id="add-review-form">
+              <div class="form-group">
+                <label>Tu Nombre *</label>
+                <input type="text" id="review-name" required placeholder="Ej. Juan Pérez">
+              </div>
+              <div class="form-group">
+                <label>Calificación *</label>
+                <div class="stars-rating-input">
+                  <span class="star-rating-btn" data-value="1"><i class="fa-regular fa-star"></i></span>
+                  <span class="star-rating-btn" data-value="2"><i class="fa-regular fa-star"></i></span>
+                  <span class="star-rating-btn" data-value="3"><i class="fa-regular fa-star"></i></span>
+                  <span class="star-rating-btn" data-value="4"><i class="fa-regular fa-star"></i></span>
+                  <span class="star-rating-btn" data-value="5"><i class="fa-regular fa-star"></i></span>
+                  <input type="hidden" id="review-stars-val" value="5" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Barbero que te atendió</label>
+                <select id="review-barber-select">
+                  <!-- Rendered dynamically by JS -->
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Tu Comentario *</label>
+                <textarea id="review-comment" rows="4" required placeholder="Cuéntanos qué te pareció el servicio, las instalaciones y la atención..."></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Enviar Opinión</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         CONTACT & LOCATION
+         ========================================== -->
+    <section id="contacto" class="contact-section section-padding">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="subtitle-gold">Contacto</span>
+          <h2>Ubicación y Horarios</h2>
+          <p>Visítanos y disfruta de un momento de relajación y estilo.</p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Contact Info -->
+          <div class="contact-info-card">
+            <div class="info-block">
+              <span class="info-icon"><i class="fa-solid fa-location-dot"></i></span>
+              <div class="info-content">
+                <h4>Dirección</h4>
+                <p>Av. Principal de la Moda 742, Piso 1, Santiago</p>
+              </div>
+            </div>
+            <div class="info-block">
+              <span class="info-icon"><i class="fa-solid fa-phone"></i></span>
+              <div class="info-content">
+                <h4>Teléfono de Contacto</h4>
+                <p>+56 9 1234 5678</p>
+              </div>
+            </div>
+            <div class="info-block">
+              <span class="info-icon"><i class="fa-brands fa-whatsapp"></i></span>
+              <div class="info-content">
+                <h4>WhatsApp Reservas</h4>
+                <p><a href="https://wa.me/56912345678" target="_blank">+56 9 1234 5678</a></p>
+              </div>
+            </div>
+            <div class="info-block">
+              <span class="info-icon"><i class="fa-solid fa-clock"></i></span>
+              <div class="info-content">
+                <h4>Horario de Atención</h4>
+                <p><strong>Lunes a Viernes:</strong> 10:00 AM - 8:00 PM</p>
+                <p><strong>Sábados:</strong> 9:00 AM - 7:00 PM</p>
+                <p><strong>Domingos:</strong> Cerrado (Descanso)</p>
+              </div>
+            </div>
+            <div class="social-links-container">
+              <h4>Síguenos en Redes</h4>
+              <div class="social-links">
+                <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="social-link"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="social-link"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="#" class="social-link"><i class="fa-brands fa-youtube"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Map -->
+          <div class="map-card-container">
+            <div id="contact-map" class="interactive-map"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <footer class="main-footer">
+    <div class="container footer-container">
+      <div class="footer-left">
+        <a href="#" class="logo">
+          <span class="logo-icon"><i class="fa-solid fa-scissors"></i></span>
+          <span class="logo-text">EL BARBERO</span>
+        </a>
+        <p>© 2026 El Barbero Club & Studio. Todos los derechos reservados.</p>
+      </div>
+      <div class="footer-right">
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+          <li><a href="#" class="btn-admin-trigger">Acceso Personal</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       MODAL: CLIENT AUTHENTICATION (LOGIN/REGISTER)
+       ========================================== -->
+  <div class="modal-overlay" id="client-auth-modal">
+    <div class="modal-container login-container" id="auth-box-container">
+      <div class="modal-header">
+        <h3><i class="fa-regular fa-user text-gold"></i> Mi Cuenta de Cliente</h3>
+        <button class="modal-close" id="close-client-auth-modal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      
+      <div class="notifications-tabs">
+        <button class="notif-tab active" id="tab-client-login" data-tab="login">Iniciar Sesión</button>
+        <button class="notif-tab" id="tab-client-register" data-tab="register">Crear Cuenta</button>
+      </div>
+
+      <!-- Login Form Pane -->
+      <div class="auth-pane-content active" id="pane-client-login" style="padding: 24px;">
+        <form id="client-login-form">
+          <div class="form-group">
+            <label>Correo Electrónico *</label>
+            <input type="email" id="c-login-email" required placeholder="tuemail@correo.com">
+          </div>
+          <div class="form-group">
+            <label>Contraseña *</label>
+            <input type="password" id="c-login-pass" required placeholder="••••••••">
+          </div>
+          <div class="error-msg-box" id="c-login-error"></div>
+          <button type="submit" class="btn btn-primary w-100 mt-2">Ingresar</button>
+        </form>
+      </div>
+
+      <!-- Register Form Pane -->
+      <div class="auth-pane-content" id="pane-client-register" style="padding: 24px; display:none;">
+        <form id="client-register-form">
+          <div class="form-group">
+            <label>Nombre Completo *</label>
+            <input type="text" id="c-reg-name" required placeholder="Ej. Alberto Riquelme">
+          </div>
+          <div class="form-group">
+            <label>Teléfono / WhatsApp *</label>
+            <input type="tel" id="c-reg-phone" required placeholder="Ej. +56998765432">
+            <span class="field-hint">Obligatorio. Se usará para llamarte a través de la web si es necesario.</span>
+          </div>
+          <div class="form-group">
+            <label>Correo Electrónico *</label>
+            <input type="email" id="c-reg-email" required placeholder="alberto@correo.com">
+          </div>
+          <div class="form-group">
+            <label>Crear Contraseña *</label>
+            <input type="password" id="c-reg-pass" required placeholder="••••••••" minlength="4">
+          </div>
+          <div class="error-msg-box" id="c-reg-error"></div>
+          <button type="submit" class="btn btn-primary w-100 mt-2">Registrarme</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Client Dashboard View Modal -->
+    <div class="modal-container" id="client-dashboard-container" style="display:none; max-width:700px;">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-address-card text-gold"></i> Panel de Cliente</h3>
+        <button class="modal-close" id="close-client-dash-modal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div style="padding: 25px; overflow-y:auto; max-height:80vh;">
+        <div class="client-dash-header" style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:15px; margin-bottom:20px;">
+          <div>
+            <h4 style="font-size:1.3rem;" id="client-name-display">Hola, Cliente</h4>
+            <p style="font-size:0.85rem; color:var(--color-gray-medium)" id="client-phone-display">Teléfono: -</p>
+          </div>
+          <button class="btn btn-outline btn-sm" id="btn-client-logout"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</button>
+        </div>
+
+        <h5 style="margin-bottom:12px; font-size:1.05rem;">Mis Citas Agendadas</h5>
+        <div class="table-responsive" style="background-color: var(--bg-tertiary); border-radius: var(--border-radius-md); border:1px solid rgba(255,255,255,0.03);">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Barbero</th>
+                <th>Servicios</th>
+                <th>Fecha y Hora</th>
+                <th>Total</th>
+                <th>Estado</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody id="client-bookings-tbody">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL: WIZARD DE AGENDAMIENTO (REORDENADO)
+       ========================================== -->
+  <div class="modal-overlay" id="booking-modal">
+    <div class="modal-container wizard-container">
+      <div class="modal-header">
+        <h3><i class="fa-regular fa-calendar-check text-gold"></i> Reservar Cita</h3>
+        <button class="modal-close" id="close-booking-modal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      
+      <!-- Wizard Progress Bar -->
+      <div class="wizard-progress">
+        <div class="progress-step active" data-step="1">
+          <span class="step-num">1</span>
+          <span class="step-title">Barbero</span>
+        </div>
+        <div class="progress-step" data-step="2">
+          <span class="step-num">2</span>
+          <span class="step-title">Servicio</span>
+        </div>
+        <div class="progress-step" data-step="3">
+          <span class="step-num">3</span>
+          <span class="step-title">Fecha / Hora</span>
+        </div>
+        <div class="progress-step" data-step="4">
+          <span class="step-num">4</span>
+          <span class="step-title">Confirmar</span>
+        </div>
+      </div>
+
+      <div class="wizard-content">
+        <!-- Paso 1: Barbero (Primero) -->
+        <div class="wizard-pane active" data-pane="1">
+          <h4>¿Quién quieres que te atienda?</h4>
+          <p class="pane-subtitle">Selecciona a tu barbero de preferencia para cargar su catálogo específico de servicios y precios.</p>
+          <div class="wizard-barbers-list" id="wizard-barbers-list">
+            <!-- Rendered dynamically by JS -->
+          </div>
+        </div>
+
+        <!-- Paso 2: Servicios (Adaptados al barbero) -->
+        <div class="wizard-pane" data-pane="2">
+          <h4>Selecciona los servicios</h4>
+          <p class="pane-subtitle" id="wizard-services-subtitle">Elige los servicios que deseas realizar con el profesional seleccionado.</p>
+          <div class="wizard-services-list" id="wizard-services-list">
+            <!-- Rendered dynamically by JS -->
+          </div>
+        </div>
+
+        <!-- Paso 3: Fecha y Hora -->
+        <div class="wizard-pane" data-pane="3">
+          <h4>Selecciona Fecha y Hora</h4>
+          <p class="pane-subtitle" id="datetime-pane-subtitle">Escoge el día en el calendario y luego la hora disponible del barbero.</p>
+          
+          <div class="datetime-picker-layout">
+            <!-- Calendar Component -->
+            <div class="calendar-component">
+              <div class="calendar-header">
+                <button id="prev-month-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                <span id="calendar-month-year">Junio 2026</span>
+                <button id="next-month-btn"><i class="fa-solid fa-chevron-right"></i></button>
+              </div>
+              <div class="calendar-weekdays">
+                <div>Lun</div><div>Mar</div><div>Mié</div><div>Jue</div><div>Vie</div><div>Sáb</div><div>Dom</div>
+              </div>
+              <div class="calendar-days" id="calendar-days-container">
+                <!-- Rendered dynamically by JS -->
+              </div>
+            </div>
+            
+            <!-- Time Slots Component -->
+            <div class="time-slots-component">
+              <h5 id="selected-date-label">Horas Disponibles</h5>
+              <div class="time-slots-grid" id="time-slots-container">
+                <div class="no-date-selected">Selecciona un día en el calendario para ver las horas disponibles.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Paso 4: Formulario y Confirmación -->
+        <div class="wizard-pane" data-pane="4">
+          <div id="booking-client-prompt" style="background-color:var(--color-gold-light); border:1px solid var(--color-gold); border-radius:var(--border-radius-md); padding:15px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center;">
+            <p style="margin:0; font-size:0.9rem;"><i class="fa-solid fa-circle-info"></i> Reserva rápida: Registra tu cuenta para guardar tu historial y agendar en un clic.</p>
+            <button class="btn btn-outline btn-sm" id="btn-wizard-login-trigger" type="button">Iniciar Sesión</button>
+          </div>
+          
+          <h4>Ingresa tus Datos</h4>
+          <p class="pane-subtitle" id="booking-details-subtitle">Completa el formulario para finalizar tu reserva.</p>
+          
+          <div class="confirmation-split">
+            <!-- Form -->
+            <form id="booking-details-form" class="wizard-form">
+              <div class="form-group">
+                <label for="cust-name">Nombre Completo *</label>
+                <input type="text" id="cust-name" required placeholder="Ej. Alberto Riquelme">
+              </div>
+              <div class="form-group">
+                <label for="cust-phone">Teléfono / WhatsApp *</label>
+                <input type="tel" id="cust-phone" required placeholder="Ej. +56998765432">
+                <span class="field-hint">Ingresa tu número para permitir llamados desde la web.</span>
+              </div>
+              <div class="form-group">
+                <label for="cust-email">Correo Electrónico *</label>
+                <input type="email" id="cust-email" required placeholder="Ej. alberto@correo.com">
+              </div>
+            </form>
+
+            <!-- Summary Card -->
+            <div class="booking-summary-card">
+              <h5>Resumen de Reserva</h5>
+              <div class="summary-details">
+                <div class="summary-row">
+                  <span class="row-label">Barbero:</span>
+                  <span class="row-val" id="summary-barber-text">No asignado</span>
+                </div>
+                <div class="summary-row">
+                  <span class="row-label">Servicios:</span>
+                  <span class="row-val" id="summary-services-text">Ninguno</span>
+                </div>
+                <div class="summary-row">
+                  <span class="row-label">Fecha:</span>
+                  <span class="row-val" id="summary-date-text">-</span>
+                </div>
+                <div class="summary-row">
+                  <span class="row-label">Hora:</span>
+                  <span class="row-val" id="summary-time-text">-</span>
+                </div>
+                <hr>
+                <div class="summary-row summary-total">
+                  <span class="row-label">Total estimado:</span>
+                  <span class="row-val text-gold" id="summary-price-text">$0</span>
+                </div>
+                <div class="summary-row">
+                  <span class="row-label">Duración:</span>
+                  <span class="row-val" id="summary-duration-text">0 min</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wizard Footer -->
+      <div class="wizard-footer">
+        <button class="btn btn-outline" id="wizard-prev-btn" disabled>Atrás</button>
+        <button class="btn btn-primary" id="wizard-next-btn">Siguiente <i class="fa-solid fa-chevron-right btn-icon-right"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL: SIMULADOR DE NOTIFICACIÓN
+       ========================================== -->
+  <div class="modal-overlay" id="notification-modal">
+    <div class="modal-container notification-simulation-container">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-paper-plane text-gold"></i> Envío de Confirmación</h3>
+        <button class="modal-close" id="close-notification-modal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <p class="notification-intro">¡Cita agendada con éxito! Simulamos el envío automático de notificaciones para cliente y barbero:</p>
+      
+      <div class="notifications-tabs">
+        <button class="notif-tab active" data-notif="whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
+        <button class="notif-tab" data-notif="email"><i class="fa-regular fa-envelope"></i> Correo Electrónico</button>
+      </div>
+
+      <div class="notifications-content">
+        <!-- WhatsApp View -->
+        <div class="notif-pane active" id="notif-whatsapp-pane">
+          <div class="whatsapp-mockup">
+            <div class="wa-header">
+              <div class="wa-avatar"><i class="fa-solid fa-scissors"></i></div>
+              <div class="wa-user-info">
+                <div class="wa-name">El Barbero Club & Studio</div>
+                <div class="wa-status">en línea</div>
+              </div>
+            </div>
+            <div class="wa-chat-area">
+              <div class="wa-message-bubble">
+                <p>💈 <strong>¡Hola <span class="notif-cust-name">Cliente</span>!</strong> Tu cita en El Barbero ha sido confirmada con éxito.</p>
+                <p>📅 <strong>Detalles de tu reserva:</strong></p>
+                <ul class="wa-details-list">
+                  <li>🧔 <strong>Barbero:</strong> <span class="notif-barber">Carlos Mendoza</span></li>
+                  <li>💇‍♂️ <strong>Servicio:</strong> <span class="notif-services">Corte</span></li>
+                  <li>🗓️ <strong>Fecha:</strong> <span class="notif-date">18 de Junio</span></li>
+                  <li>⏰ <strong>Hora:</strong> <span class="notif-time">10:30 AM</span></li>
+                  <li>💵 <strong>Total:</strong> <span class="notif-price">$15,000</span></li>
+                </ul>
+                <p>📍 Te esperamos en Av. Principal de la Moda 742, Santiago.</p>
+                <p>⚠️ Si necesitas reprogramar o cancelar, puedes hacerlo haciendo clic en el siguiente enlace:</p>
+                <p class="wa-link-box">
+                  <a href="#" class="manage-booking-link text-gold" id="wa-manage-link">Gestionar mi cita</a>
+                </p>
+              </div>
+              <span class="wa-time">Ahora mismo ✓✓</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Email View -->
+        <div class="notif-pane" id="notif-email-pane">
+          <div class="email-mockup">
+            <div class="email-header">
+              <p><strong>De:</strong> reservas@elbarberoclub.cl</p>
+              <p><strong>Para:</strong> <span id="email-to-field">cliente@correo.com</span></p>
+              <p><strong>Asunto:</strong> ✓ Confirmación de tu reserva - El Barbero Club & Studio</p>
+            </div>
+            <div class="email-body">
+              <div class="email-logo">EL BARBERO</div>
+              <h2>¡Tu reserva está lista!</h2>
+              <p>Hola <span class="notif-cust-name">Cliente</span>,</p>
+              <p>Queremos confirmarte que hemos agendado tu cita con nosotros satisfactoriamente. A continuación, te compartimos el resumen de los detalles:</p>
+              
+              <div class="email-summary-table">
+                <table>
+                  <tr><td><strong>Barbero:</strong></td><td><span class="notif-barber">Carlos Mendoza</span></td></tr>
+                  <tr><td><strong>Servicio(s):</strong></td><td><span class="notif-services">Corte</span></td></tr>
+                  <tr><td><strong>Fecha:</strong></td><td><span class="notif-date">18 de Junio</span></td></tr>
+                  <tr><td><strong>Hora:</strong></td><td><span class="notif-time">10:30 AM</span></td></tr>
+                  <tr><td><strong>Valor estimado:</strong></td><td><strong class="text-gold"><span class="notif-price">$15,000</span></strong></td></tr>
+                </table>
+              </div>
+              
+              <p>Para hacer cambios en tu reserva, ya sea reprogramar el horario o cancelar la cita, haz clic en el siguiente botón:</p>
+              <div class="text-center">
+                <a href="#" class="btn btn-primary btn-sm manage-booking-link" id="email-manage-link" style="display:inline-block; margin: 15px 0;">Gestionar Mi Reserva</a>
+              </div>
+              
+              <p class="email-footer-text">Si tienes alguna pregunta, no dudes en escribirnos por WhatsApp al +56 9 1234 5678.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="notification-modal-footer">
+        <button class="btn btn-primary" id="btn-finish-booking">Entendido, Finalizar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL: REPROGRAMAR / CANCELAR CITA (CLIENTES)
+       ========================================== -->
+  <div class="modal-overlay" id="manage-booking-modal">
+    <div class="modal-container manage-booking-container">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-circle-info text-gold"></i> Gestionar mi Cita</h3>
+        <button class="modal-close" id="close-manage-modal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      
+      <div class="manage-booking-body">
+        <div class="appointment-card-display">
+          <h4>Resumen de tu Cita</h4>
+          <ul class="appointment-details-list">
+            <li><strong>Código de Cita:</strong> <span id="manage-code-display" class="text-gold">#123456</span></li>
+            <li><strong>Servicio(s):</strong> <span id="manage-services-display">Corte de Cabello</span></li>
+            <li><strong>Barbero:</strong> <span id="manage-barber-display">Carlos Mendoza</span></li>
+            <li><strong>Fecha y Hora:</strong> <span id="manage-datetime-display">18 de Junio a las 10:30 AM</span></li>
+            <li><strong>Monto Total:</strong> <span id="manage-price-display">$15,000</span></li>
+            <li><strong>Estado Actual:</strong> <span id="manage-status-display" class="status-badge status-pending">Pendiente</span></li>
+          </ul>
+        </div>
+
+        <div class="manage-actions-box">
+          <div class="reprogram-box" id="reprogram-calendar-box">
+            <h5>¿Deseas Reprogramar?</h5>
+            <p>Selecciona una nueva fecha y hora disponible. Ten en cuenta que solo se pueden reprogramar citas pendientes.</p>
+            
+            <div class="datetime-picker-layout compact-layout">
+              <div class="calendar-component">
+                <div class="calendar-header">
+                  <button id="reprogram-prev-month"><i class="fa-solid fa-chevron-left"></i></button>
+                  <span id="reprogram-month-year">Junio 2026</span>
+                  <button id="reprogram-next-month"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+                <div class="calendar-weekdays">
+                  <div>Lu</div><div>Ma</div><div>Mi</div><div>Ju</div><div>Vi</div><div>Sá</div><div>Do</div>
+                </div>
+                <div class="calendar-days" id="reprogram-calendar-days">
+                  <!-- Rendered dynamically -->
+                </div>
+              </div>
+              <div class="time-slots-component">
+                <h6>Horas Disponibles</h6>
+                <div class="time-slots-grid" id="reprogram-time-slots">
+                  <div class="no-date-selected">Selecciona un día en el calendario.</div>
+                </div>
+              </div>
+            </div>
+            
+            <button class="btn btn-primary w-100 mt-3" id="btn-submit-reprogram" disabled>Guardar Nuevo Horario</button>
+          </div>
+
+          <div class="cancel-box">
+            <h5>¿Deseas Cancelar?</h5>
+            <p>La cancelación es inmediata y liberará el horario de atención del barbero.</p>
+            <button class="btn btn-danger w-100" id="btn-submit-cancel">Cancelar Cita Definitivamente</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL: LLAMADA WEB VoIP (SIMULADOR DE LLAMADO)
+       ========================================== -->
+  <div class="modal-overlay" id="voip-call-modal">
+    <div class="modal-container" style="max-width: 380px; background-color:#0b141a; border: 1px solid var(--color-gold-light);">
+      <div class="voip-call-body" style="padding: 40px 30px; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+        
+        <!-- Animated Ring Waves -->
+        <div class="voip-avatar-wrapper" style="position:relative; margin-bottom:30px;">
+          <div class="voip-pulse-wave"></div>
+          <div class="voip-pulse-wave delay-1"></div>
+          <div class="voip-pulse-wave delay-2"></div>
+          <div class="voip-avatar-circle" style="width:110px; height:110px; border-radius:50%; background-color:#1e2d35; border:3px solid var(--color-gold); display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative; z-index:5;">
+            <i class="fa-solid fa-user" style="font-size:3.5rem; color:var(--color-gray-medium)" id="voip-client-icon"></i>
+          </div>
+        </div>
+
+        <h4 style="font-size:1.4rem; font-weight:700; margin-bottom:5px;" id="voip-client-name">Cliente</h4>
+        <p style="font-size:0.9rem; color:var(--color-gold); font-weight:700; margin-bottom:20px;" id="voip-call-status">Marcando...</p>
+        
+        <!-- Timer -->
+        <div style="font-size:1.8rem; font-weight:700; font-family:monospace; margin-bottom:40px; display:none;" id="voip-timer">00:00</div>
+
+        <!-- Conventional call alternative -->
+        <div style="margin-bottom:30px;">
+          <a href="#" id="voip-real-call-link" class="text-gold" style="font-size:0.8rem; text-decoration:underline;"><i class="fa-solid fa-phone"></i> Iniciar llamada convencional del sistema</a>
+        </div>
+
+        <!-- VoIP Controls buttons -->
+        <div class="voip-controls" style="display:flex; gap:20px; align-items:center; justify-content:center;">
+          <button class="voip-btn" id="voip-btn-mute" title="Silenciar Micrófono" style="width:48px; height:48px; border-radius:50%; background-color:#202c33; display:flex; align-items:center; justify-content:center; font-size:1.1rem; color:#fff; border:1px solid rgba(255,255,255,0.05);">
+            <i class="fa-solid fa-microphone"></i>
+          </button>
+          <button class="voip-btn btn-danger" id="voip-btn-hangup" title="Colgar Llamada" style="width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.6rem; color:#fff;">
+            <i class="fa-solid fa-phone-slash"></i>
+          </button>
+          <button class="voip-btn" id="voip-btn-speaker" title="Altavoz" style="width:48px; height:48px; border-radius:50%; background-color:#202c33; display:flex; align-items:center; justify-content:center; font-size:1.1rem; color:#fff; border:1px solid rgba(255,255,255,0.05);">
+            <i class="fa-solid fa-volume-high"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL: LLAMADA WEB VoIP ENTRANTE (CLIENTE)
+       ========================================== -->
+  <div class="modal-overlay" id="voip-incoming-modal">
+    <div class="modal-container" style="max-width: 340px; background-color:#0b141a; border: 2px solid var(--color-gold); text-align:center;">
+      <div style="padding: 30px 20px;">
+        <div class="voip-avatar-wrapper" style="position:relative; margin-bottom:25px;">
+          <div class="voip-pulse-wave"></div>
+          <div class="voip-pulse-wave delay-1"></div>
+          <div class="voip-avatar-circle" style="width:90px; height:90px; border-radius:50%; background-color:#1e2d35; border:3px solid var(--color-gold); display:flex; align-items:center; justify-content:center; overflow:hidden; margin:0 auto; position:relative; z-index:5;">
+            <i class="fa-solid fa-scissors" style="font-size:2.5rem; color:var(--color-gold);"></i>
+          </div>
+        </div>
+        <h4 style="font-size:1.25rem; font-weight:700; margin-bottom:5px;" id="incoming-caller-name">Barbero</h4>
+        <p style="font-size:0.85rem; color:var(--color-gold); font-weight:700; margin-bottom:30px;"><i class="fa-solid fa-bell ringing-bell"></i> Llamada entrante de la barbería...</p>
+        
+        <div style="display:flex; gap:15px; justify-content:center;">
+          <button class="btn btn-danger btn-sm" id="btn-decline-incoming" style="padding: 10px 24px; border-radius:30px;"><i class="fa-solid fa-phone-slash"></i> Rechazar</button>
+          <button class="btn btn-success btn-sm" id="btn-accept-incoming" style="padding: 10px 24px; border-radius:30px; background-color:var(--color-success); border-color:var(--color-success);"><i class="fa-solid fa-phone"></i> Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL: LLAMADA WEB VoIP CONECTADA (CLIENTE)
+       ========================================== -->
+  <div class="modal-overlay" id="voip-client-call-modal">
+    <div class="modal-container" style="max-width: 340px; background-color:#0b141a; border: 1px solid var(--color-gold-light); text-align:center;">
+      <div style="padding: 30px 20px;">
+        <div class="voip-avatar-circle" style="width:90px; height:90px; border-radius:50%; background-color:#1e2d35; border:2px solid var(--color-gold); display:flex; align-items:center; justify-content:center; overflow:hidden; margin:0 auto 20px;">
+          <i class="fa-solid fa-scissors" style="font-size:2.5rem; color:var(--color-gold);"></i>
+        </div>
+        <h4 style="font-size:1.25rem; font-weight:700; margin-bottom:5px;" id="client-call-barber-name">Carlos Mendoza</h4>
+        <p style="font-size:0.85rem; color:var(--color-success); font-weight:700; margin-bottom:15px;">🟢 Llamada en Curso (Web VoIP)</p>
+        <div style="font-size:1.5rem; font-weight:700; font-family:monospace; margin-bottom:30px;" id="client-call-timer">00:00</div>
+        
+        <div class="voip-controls" style="display:flex; gap:15px; align-items:center; justify-content:center;">
+          <button class="voip-btn" id="voip-client-mute" title="Silenciar Micrófono" style="width:40px; height:40px; border-radius:50%; background-color:#202c33; display:flex; align-items:center; justify-content:center; font-size:1rem; color:#fff; border:1px solid rgba(255,255,255,0.05);">
+            <i class="fa-solid fa-microphone"></i>
+          </button>
+          <button class="voip-btn btn-danger" id="voip-client-hangup" title="Colgar" style="width:50px; height:50px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.3rem; color:#fff; background-color:var(--color-danger);">
+            <i class="fa-solid fa-phone-slash"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL: ACCESO ADMINISTRACIÓN (LOGIN)
+       ========================================== -->
+  <div class="modal-overlay" id="login-modal">
+    <div class="modal-container login-container" style="max-width: 450px;">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-lock text-gold"></i> Acceso Personal / Barberos</h3>
+        <button class="modal-close" id="close-login-modal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      
+      <div class="notifications-tabs">
+        <button class="notif-tab active" id="tab-admin-login" data-tab="login">Iniciar Sesión</button>
+        <button class="notif-tab" id="tab-barber-register" data-tab="register">Registro Barbero</button>
+      </div>
+
+      <!-- Login Form Pane -->
+      <div class="auth-pane-content active" id="pane-admin-login" style="padding: 20px 0 0 0;">
+        <form id="admin-login-form" class="login-form">
+          <p class="login-desc">Inicia sesión como dueño (admin) o con tu usuario de barbero.</p>
+          <div class="form-group">
+            <label for="login-username">Usuario *</label>
+            <input type="text" id="login-username" required placeholder="admin o tu usuario" value="admin">
+          </div>
+          <div class="form-group">
+            <label for="login-password">Contraseña *</label>
+            <div class="password-input-wrapper">
+              <input type="password" id="login-password" required placeholder="••••••••" value="admin123">
+              <button type="button" class="toggle-password-btn"><i class="fa-regular fa-eye"></i></button>
+            </div>
+          </div>
+          <div class="error-msg-box" id="login-error-msg"></div>
+          <button type="submit" class="btn btn-primary w-100 mt-2">Iniciar Sesión</button>
+        </form>
+      </div>
+
+      <!-- Register Barber Form Pane -->
+      <div class="auth-pane-content" id="pane-barber-register" style="display:none; padding: 20px 0 0 0; max-height:65vh; overflow-y:auto; padding-right:5px;">
+        <form id="barber-register-form" class="login-form">
+          <p class="login-desc">Únete al equipo creando tu cuenta de barbero. Luego podrás configurar tus servicios y precios.</p>
+          <div class="form-group">
+            <label>Nombre Completo *</label>
+            <input type="text" id="reg-barber-name" required placeholder="Ej. Carlos Mendoza">
+          </div>
+          <div class="form-group">
+            <label>Especialidad *</label>
+            <input type="text" id="reg-barber-specialty" required placeholder="Ej. Cortes modernos y skin fade">
+          </div>
+          <div class="form-group">
+            <label>Breve Reseña / Bio *</label>
+            <textarea id="reg-barber-bio" rows="2" required placeholder="Cuéntanos un poco sobre ti y tu estilo..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Usuario de Acceso *</label>
+            <input type="text" id="reg-barber-user" required placeholder="Ej. carlos">
+          </div>
+          <div class="form-group">
+            <label>Contraseña *</label>
+            <input type="password" id="reg-barber-pass" required placeholder="••••••••" minlength="4">
+          </div>
+          <div class="form-group">
+            <label>Imagen URL (Opcional)</label>
+            <input type="text" id="reg-barber-image" placeholder="URL de imagen o deja vacío">
+          </div>
+          <div class="error-msg-box" id="reg-barber-error"></div>
+          <button type="submit" class="btn btn-primary w-100 mt-3">Registrarme como Barbero</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       ADMINISTRATION PANEL VIEW (SPA FULLSCREEN OVERLAY)
+       ========================================== -->
+  <div class="admin-panel-wrapper" id="admin-panel">
+    <!-- Admin Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar-header">
+        <a href="#" class="logo">
+          <span class="logo-icon"><i class="fa-solid fa-scissors"></i></span>
+          <span class="logo-text">EL BARBERO</span>
+        </a>
+        <div class="admin-badge" id="admin-role-badge">Admin Panel</div>
+      </div>
+      <div class="admin-user-profile">
+        <div class="admin-avatar"><i class="fa-solid fa-user-gear"></i></div>
+        <div class="admin-user-details">
+          <h4 id="admin-profile-name">Administrador</h4>
+          <p id="admin-profile-sub">reservas@elbarbero.cl</p>
+        </div>
+      </div>
+      <nav class="admin-menu">
+        <ul>
+          <li><button class="admin-menu-btn active" data-target="admin-dashboard"><i class="fa-solid fa-chart-line"></i> Dashboard</button></li>
+          <li><button class="admin-menu-btn" data-target="admin-appointments"><i class="fa-solid fa-calendar-days"></i> Gestión de Citas</button></li>
+          <!-- Visible ONLY for Owner (Admin Global) -->
+          <li id="menu-item-barbers"><button class="admin-menu-btn" data-target="admin-barbers"><i class="fa-solid fa-user-group"></i> Equipo / Barberos</button></li>
+          <li id="menu-item-clients" style="display:none;"><button class="admin-menu-btn" data-target="admin-clients"><i class="fa-solid fa-users"></i> Clientes Registrados</button></li>
+          <li><button class="admin-menu-btn" data-target="admin-services"><i class="fa-solid fa-list-check"></i> Mis Servicios</button></li>
+          <li><button class="admin-menu-btn" data-target="admin-config"><i class="fa-solid fa-sliders"></i> Ajustes / Horarios</button></li>
+          <!-- Visible ONLY for Barbers -->
+          <li id="menu-item-profile" style="display:none;"><button class="admin-menu-btn" data-target="admin-profile"><i class="fa-solid fa-user-pen"></i> Mi Perfil</button></li>
+        </ul>
+      </nav>
+      
+      <!-- Connection indicator in Admin panel -->
+      <div style="padding: 10px 24px; font-size:0.8rem; border-top:1px solid rgba(255,255,255,0.05); display:flex; flex-direction:column; gap:6px;">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span id="admin-offline-dot" style="width:8px; height:8px; border-radius:50%; background-color:var(--color-success)"></span>
+          <span id="admin-offline-text">En Línea</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px; color:var(--color-gold);">
+          <i class="fa-solid fa-cloud" id="admin-cloud-icon" style="font-size:0.8rem;"></i>
+          <span id="admin-cloud-text">Nube Sincronizada</span>
+        </div>
+      </div>
+
+      <div class="admin-sidebar-footer">
+        <button class="btn btn-outline w-100" id="btn-admin-logout">
+          <i class="fa-solid fa-right-from-bracket"></i> Salir del Panel
+        </button>
+      </div>
+    </aside>
+
+    <!-- Admin Main Body -->
+    <main class="admin-main">
+      <!-- Admin Top Bar -->
+      <header class="admin-topbar">
+        <div class="admin-topbar-left">
+          <button class="admin-sidebar-toggle"><i class="fa-solid fa-bars"></i></button>
+          <h2 id="admin-view-title">Dashboard</h2>
+        </div>
+        <div class="admin-topbar-right">
+          <span class="admin-date-indicator" id="admin-current-date-indicator">18 de Junio de 2026</span>
+          <div class="admin-notifications-bell">
+            <i class="fa-regular fa-bell"></i>
+            <span class="notification-badge" id="admin-notif-count">0</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Admin Content Containers -->
+      <div class="admin-content-area">
+        
+        <!-- ==================== TAB: DASHBOARD ==================== -->
+        <section class="admin-tab-section active" id="admin-dashboard">
+          <div class="dashboard-stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon bg-gold-tint"><i class="fa-regular fa-calendar-check text-gold"></i></div>
+              <div class="stat-data">
+                <span class="stat-label">Citas del Día</span>
+                <h3 class="stat-value" id="stat-today-count">0</h3>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon bg-green-tint"><i class="fa-solid fa-wallet text-green"></i></div>
+              <div class="stat-data">
+                <span class="stat-label" id="stat-revenue-label">Ingresos Estimados (Hoy)</span>
+                <h3 class="stat-value" id="stat-today-revenue">$0</h3>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon bg-blue-tint"><i class="fa-regular fa-clock text-blue"></i></div>
+              <div class="stat-data">
+                <span class="stat-label">Mis Citas Pendientes</span>
+                <h3 class="stat-value" id="stat-pending-count">0</h3>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon bg-purple-tint"><i class="fa-regular fa-star text-purple"></i></div>
+              <div class="stat-data">
+                <span class="stat-label">Opiniones Totales</span>
+                <h3 class="stat-value" id="stat-reviews-count">0</h3>
+              </div>
+            </div>
+          </div>
+
+          <div class="dashboard-charts-grid">
+            <!-- Recent Activity List -->
+            <div class="dashboard-card card-large">
+              <div class="card-header">
+                <h3 id="dashboard-citas-titulo">Mis Citas Próximas (Hoy/Mañana)</h3>
+                <a href="#" class="view-all-link" id="dash-view-all-citas">Ver todas</a>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="admin-table">
+                    <thead>
+                      <tr>
+                        <th>Cliente</th>
+                        <th>Barbero</th>
+                        <th>Fecha y Hora</th>
+                        <th>Servicios</th>
+                        <th>Total</th>
+                        <th>Estado</th>
+                        <th>Acción</th>
+                      </tr>
+                    </thead>
+                    <tbody id="dash-recent-appointments-tbody">
+                      <!-- Rendered by JS -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Summary metrics per barber (Visible ONLY for Owner/Admin Global) -->
+            <div class="dashboard-card card-small" id="dash-card-performance-wrapper">
+              <div class="card-header">
+                <h3>Desempeño Barberos (Mes)</h3>
+              </div>
+              <div class="card-body">
+                <div class="barbers-performance-list" id="dash-barbers-performance-list">
+                  <!-- Rendered dynamically by JS -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== TAB: CITAS MANAGEMENT ==================== -->
+        <section class="admin-tab-section" id="admin-appointments">
+          <div class="filters-bar-card">
+            <h4>Filtrar Citas</h4>
+            <div class="filters-grid">
+              <div class="form-group">
+                <label>Buscar Cliente</label>
+                <div class="input-search-wrapper">
+                  <input type="text" id="filter-search-name" placeholder="Buscar por nombre, tel o ID...">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+              </div>
+              <div class="form-group" id="filter-barber-group">
+                <label>Barbero</label>
+                <select id="filter-barber">
+                  <option value="all">Todos</option>
+                  <!-- Rendered dynamically -->
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Estado</label>
+                <select id="filter-status">
+                  <option value="all">Todos</option>
+                  <option value="Pendiente">Pendiente</option>
+                  <option value="Atendida">Atendida</option>
+                  <option value="Cancelada">Cancelada</option>
+                  <option value="Ausente">Ausente</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Fecha</label>
+                <select id="filter-date">
+                  <option value="all">Todas las fechas</option>
+                  <option value="today">Hoy</option>
+                  <option value="week">Esta semana</option>
+                  <option value="month">Este mes</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Appointments List Card -->
+          <div class="dashboard-card mt-3">
+            <div class="card-header flex-header">
+              <h3 id="appointments-list-title">Listado de Citas Agendadas</h3>
+              <div class="header-action-buttons">
+                <button class="btn btn-primary btn-sm btn-book-trigger"><i class="fa-solid fa-plus"></i> Nueva Cita</button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Código</th>
+                      <th>Cliente</th>
+                      <th>Contacto</th>
+                      <th>Servicios</th>
+                      <th class="col-barber-header">Barbero</th>
+                      <th>Fecha / Hora</th>
+                      <th>Monto</th>
+                      <th>Estado</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody id="admin-appointments-tbody">
+                    <!-- Rendered by JS -->
+                  </tbody>
+                </table>
+              </div>
+              <div class="pagination-info" id="appointments-pagination-info">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== TAB: BARBERS MANAGEMENT (OWNER ONLY) ==================== -->
+        <section class="admin-tab-section" id="admin-barbers">
+          <div class="admin-flex-row">
+            <!-- Add/Edit Barber Form -->
+            <div class="dashboard-card form-card-half">
+              <div class="card-header">
+                <h3 id="barber-form-title">Agregar Nuevo Barbero</h3>
+              </div>
+              <div class="card-body">
+                <form id="admin-barber-form">
+                  <input type="hidden" id="barber-edit-id" value="">
+                  <div class="form-group">
+                    <label>Nombre Completo *</label>
+                    <input type="text" id="barber-name-input" required placeholder="Ej. Carlos Mendoza">
+                  </div>
+                  <div class="form-group">
+                    <label>Especialidad *</label>
+                    <input type="text" id="barber-specialty-input" required placeholder="Ej. Afeitado clásico a navaja">
+                  </div>
+                  
+                  <!-- Barber credentials setting -->
+                  <div class="form-group" style="background-color:var(--bg-tertiary); padding:15px; border-radius:4px; border:1px solid rgba(255,255,255,0.03);">
+                    <h5 style="font-size:0.85rem; margin-bottom:10px; color:var(--color-gold); font-weight:700;"><i class="fa-solid fa-lock"></i> Credenciales de Acceso</h5>
+                    <div class="form-group">
+                      <label>Usuario *</label>
+                      <input type="text" id="barber-username-input" required placeholder="carlos">
+                    </div>
+                    <div class="form-group" style="margin-bottom:0;">
+                      <label>Contraseña *</label>
+                      <input type="text" id="barber-password-input" required placeholder="carlos123">
+                    </div>
+                  </div>
+
+                  <div class="form-group mt-3">
+                    <label>Breve Reseña / Bio *</label>
+                    <textarea id="barber-bio-input" rows="3" required placeholder="Experiencia, hobbies o estilo del barbero..."></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label>Imagen URL</label>
+                    <input type="text" id="barber-image-input" placeholder="Vacío para imagen predeterminada">
+                    <span class="field-hint">Puedes ingresar una URL de foto o dejar vacío.</span>
+                  </div>
+                  <div class="form-buttons-row">
+                    <button type="button" class="btn btn-outline" id="btn-cancel-barber-edit" style="display:none;">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="btn-submit-barber">Registrar Barbero</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!-- Barbers List -->
+            <div class="dashboard-card list-card-half">
+              <div class="card-header">
+                <h3>Listado de Personal</h3>
+              </div>
+              <div class="card-body">
+                <div class="admin-items-list" id="admin-barbers-list-container">
+                  <!-- Rendered dynamically by JS -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== TAB: SERVICES CATALOG ==================== -->
+        <section class="admin-tab-section" id="admin-services">
+          <div class="admin-flex-row">
+            <!-- Add/Edit Service Form -->
+            <div class="dashboard-card form-card-half">
+              <div class="card-header">
+                <h3 id="service-form-title">Agregar Nuevo Servicio</h3>
+              </div>
+              <div class="card-body">
+                <form id="admin-service-form">
+                  <input type="hidden" id="service-edit-id" value="">
+                  
+                  <!-- Selector visible only for owner (to manage other barber services) -->
+                  <div class="form-group" id="service-owner-barber-select-group" style="display:none;">
+                    <label>Asociar al Barbero *</label>
+                    <select id="service-barber-owner-select">
+                      <!-- Rendered dynamically -->
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Nombre del Servicio *</label>
+                    <input type="text" id="service-name-input" required placeholder="Ej. Afeitado Tradicional Toalla Caliente">
+                  </div>
+                  <div class="form-group">
+                    <label>Categoría *</label>
+                    <select id="service-category-input" required>
+                      <option value="corte">Cortes</option>
+                      <option value="barba">Barba y Afeitado</option>
+                      <option value="combos">Combos Especiales</option>
+                      <option value="tratamientos">Tratamientos</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Precio ($) *</label>
+                    <input type="number" id="service-price-input" required placeholder="Ej. 12000" min="0">
+                  </div>
+                  <div class="form-group">
+                    <label>Duración (Minutos) *</label>
+                    <select id="service-duration-input" required>
+                      <option value="15">15 min</option>
+                      <option value="30" selected>30 min</option>
+                      <option value="45">45 min</option>
+                      <option value="60">60 min</option>
+                      <option value="90">90 min</option>
+                      <option value="120">120 min</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Descripción Corta *</label>
+                    <textarea id="service-desc-input" rows="2" required placeholder="Breve explicación del servicio para el cliente..."></textarea>
+                  </div>
+                  <div class="form-buttons-row">
+                    <button type="button" class="btn btn-outline" id="btn-cancel-service-edit" style="display:none;">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="btn-submit-service">Guardar Servicio</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!-- Services List -->
+            <div class="dashboard-card list-card-half">
+              <div class="card-header">
+                <h3 id="admin-services-list-title">Mis Servicios Registrados</h3>
+              </div>
+              <div class="card-body">
+                <div class="admin-items-list" id="admin-services-list-container">
+                  <!-- Rendered dynamically by JS -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== TAB: GENERAL CONFIGURATION ==================== -->
+        <section class="admin-tab-section" id="admin-config">
+          <div class="admin-flex-row flex-column">
+            
+            <div class="admin-config-grid-layout">
+              <!-- Work Hours Configuration -->
+              <div class="dashboard-card">
+                <div class="card-header">
+                  <h3 id="config-hours-title">Mis Horarios de Atención</h3>
+                </div>
+                <div class="card-body">
+                  <p class="config-desc" id="config-hours-desc">Ajusta los horarios en los que los clientes pueden agendar citas contigo a través de la web.</p>
+                  <form id="config-hours-form">
+                    <div class="config-hours-list" id="config-hours-days-container">
+                      <!-- Rendered dynamically by JS -->
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 mt-3">Guardar Horarios de Atención</button>
+                  </form>
+                </div>
+              </div>
+
+              <!-- Holidays & Vacations Block (Días Libres) -->
+              <div class="dashboard-card">
+                <div class="card-header">
+                  <h3 id="config-block-title">Mis Vacaciones y Días Libres</h3>
+                </div>
+                <div class="card-body">
+                  <p class="config-desc" id="config-block-desc">Inhabilita fechas específicas del calendario para que no puedan agendar citas contigo.</p>
+                  
+                  <form id="config-block-date-form" class="config-block-date-form-inline">
+                    <div class="form-group flex-1">
+                      <label>Seleccionar Fecha *</label>
+                      <input type="date" id="block-date-input" required>
+                    </div>
+                    <div class="form-group flex-2">
+                      <label>Motivo / Descripción *</label>
+                      <input type="text" id="block-reason-input" required placeholder="Ej. Vacaciones Particulares">
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Bloquear</button>
+                  </form>
+
+                  <h5 class="mt-4 mb-2">Mis Fechas Bloqueadas</h5>
+                  <div class="blocked-dates-table-container">
+                    <table class="admin-mini-table">
+                      <thead>
+                        <tr>
+                          <th>Fecha</th>
+                          <th>Motivo</th>
+                          <th>Acción</th>
+                        </tr>
+                      </thead>
+                      <tbody id="config-blocked-dates-tbody">
+                        <!-- Rendered by JS -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </section>
+
+        <!-- ==================== TAB: CLIENTS MANAGEMENT (OWNER ONLY) ==================== -->
+        <section class="admin-tab-section" id="admin-clients">
+          <div class="filters-bar-card">
+            <h4>Buscar Clientes</h4>
+            <div class="filters-grid" style="grid-template-columns: 1fr;">
+              <div class="form-group" style="margin-bottom:0;">
+                <label>Buscar Cliente por Nombre, Teléfono o Correo</label>
+                <div class="input-search-wrapper">
+                  <input type="text" id="filter-client-search" placeholder="Escribe para buscar...">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="dashboard-card mt-3">
+            <div class="card-header">
+              <h3>Clientes de El Barbero</h3>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Nombre</th>
+                      <th>Teléfono</th>
+                      <th>Correo</th>
+                      <th>Citas Totales</th>
+                      <th>Total Gastado</th>
+                      <th>Acción</th>
+                    </tr>
+                  </thead>
+                  <tbody id="admin-clients-tbody">
+                    <!-- Rendered dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== TAB: PROFILE EDIT (BARBERS ONLY) ==================== -->
+        <section class="admin-tab-section" id="admin-profile">
+          <div class="dashboard-card" style="max-width: 700px; margin: 0 auto;">
+            <div class="card-header">
+              <h3>Editar mi Perfil de Barbero</h3>
+            </div>
+            <div class="card-body">
+              <form id="barber-profile-edit-form">
+                <div class="form-group">
+                  <label>Nombre Completo *</label>
+                  <input type="text" id="prof-name" required placeholder="Ej. Carlos Mendoza">
+                </div>
+                <div class="form-group">
+                  <label>Especialidad *</label>
+                  <input type="text" id="prof-specialty" required placeholder="Ej. Afeitado clásico a navaja">
+                </div>
+                <div class="form-group">
+                  <label>Breve Reseña / Bio *</label>
+                  <textarea id="prof-bio" rows="3" required placeholder="Describe tu experiencia y estilo..."></textarea>
+                </div>
+                <div class="form-group">
+                  <label>Imagen URL</label>
+                  <input type="text" id="prof-image" placeholder="URL de foto de perfil">
+                </div>
+                
+                <div class="form-group" style="background-color:var(--bg-tertiary); padding:15px; border-radius:4px; border:1px solid rgba(255,255,255,0.03); margin-top:20px;">
+                  <h5 style="font-size:0.85rem; margin-bottom:10px; color:var(--color-gold); font-weight:700;"><i class="fa-solid fa-lock"></i> Cambiar Credenciales de Acceso</h5>
+                  <div class="form-group">
+                    <label>Nombre de Usuario *</label>
+                    <input type="text" id="prof-username" required placeholder="carlos">
+                  </div>
+                  <div class="form-group" style="margin-bottom:0;">
+                    <label>Contraseña *</label>
+                    <input type="password" id="prof-password" required placeholder="••••••••">
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 mt-4">Guardar Cambios de Perfil</button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Leaflet Map JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  
+  <!-- Custom JS Application logic -->
+  <script src="app.js"></script>
+</body>
+</html>
